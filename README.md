@@ -16,3 +16,11 @@
 1. [Padrões de Projeto](https://docs.google.com/presentation/d/1OwGrJ9WbFkZ5xymjt-3UsyyI7OYfVHoLYxII9JpFl7k/edit?usp=sharing)
 1. [Frameworks e Bibliotecas](https://docs.google.com/presentation/d/1R8Mi7QUB3ZFghhAdQu1kfrXsjPaWnDhTCVEDu216K6M/edit?usp=sharing)
 
+### Seminários
+
++ Gradle `Grupo 1`
++ JPA/Hibernate `Grupo 2`
++ Spring Framework
+    + Spring Data `Grupo 3`
+    + Spring Web (REST e RESTful) `Grupo 4`
++ API `Grupo 5`
