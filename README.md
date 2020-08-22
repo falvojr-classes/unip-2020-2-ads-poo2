@@ -16,3 +16,11 @@
 1. [Padrões de Projeto](https://docs.google.com/presentation/d/1OwGrJ9WbFkZ5xymjt-3UsyyI7OYfVHoLYxII9JpFl7k/edit?usp=sharing)
 1. [Frameworks e Bibliotecas](https://docs.google.com/presentation/d/1R8Mi7QUB3ZFghhAdQu1kfrXsjPaWnDhTCVEDu216K6M/edit?usp=sharing)
 
+### Seminários (04/09)
+
++ Gradle `Grupo 1` - Valdir e Vinicius
++ JPA/Hibernate `Grupo 2` - Isabela e Arthur
++ Spring Framework:
+    + Spring Data `Grupo 3` - Vitor, Júlio, Letícia, Carlos, João
+    + Spring Web (REST) `Grupo 4`
++ API `Grupo 5` - Leonardo e Keran
