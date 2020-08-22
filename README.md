@@ -18,7 +18,7 @@
 
 ### Seminários (04/09)
 
-+ Gradle `Grupo 1` (Valdir)
++ Gradle `Grupo 1` (Valdir e Vinicius)
 + JPA/Hibernate `Grupo 2`
 + Spring Framework
     + Spring Data `Grupo 3`
