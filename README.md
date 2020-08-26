@@ -18,9 +18,9 @@
 
 ### Seminários (04/09)
 
-+ Gradle `Grupo 1` - Valdir e Vinicius
-+ JPA/Hibernate `Grupo 2` - Isabela e Arthur
++ **Gradle** `Grupo 1`
++ **JPA/Hibernate** `Grupo 2`
 + Spring Framework:
-    + Spring Data `Grupo 3` - Vitor, Júlio, Letícia, Carlos, João
-    + Spring Web (REST) `Grupo 4`
-+ API `Grupo 5` - Leonardo e Keran
+    + **Spring Data** `Grupo 3`
+    + **Spring Web (REST)** `Grupo 4`
++ **API** `Grupo 5`
