@@ -1,4 +1,4 @@
-package br.unip.gof.singleton;
+package br.unip.ads.gof.singleton;
 
 public class SingletonPreguicoso {
 	

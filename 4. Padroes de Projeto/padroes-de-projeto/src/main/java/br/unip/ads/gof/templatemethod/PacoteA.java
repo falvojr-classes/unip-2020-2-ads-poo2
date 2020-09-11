@@ -1,4 +1,4 @@
-package br.unip.gof.templatemethod;
+package br.unip.ads.gof.templatemethod;
 
 public class PacoteA extends Viagem {
 

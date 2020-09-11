@@ -1,4 +1,4 @@
-package br.unip.gof.templatemethod;
+package br.unip.ads.gof.templatemethod;
 
 public abstract class Viagem {
 
