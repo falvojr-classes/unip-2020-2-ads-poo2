@@ -2,10 +2,14 @@ package br.unip.ads.pim.entidades;
 
 import java.util.List;
 
+import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
+
 public class Cliente {
 
 	private String nome;
-	private Long documento;
+	private String documento;
 	private String email;
 	private String senha;
 	private TipoCliente tipo;
@@ -13,6 +17,23 @@ public class Cliente {
 	private List<DadoBancario> dadosBancarios;
 	private List<Interesse> interesses;
 
+	public boolean validarDocumento() {
+		boolean ehValido = true;
+		try {
+			if (TipoCliente.PF.equals(tipo)) {
+				new CPFValidator().assertValid(documento);
+			} else if (TipoCliente.PJ.equals(tipo)) {
+				new CNPJValidator().assertValid(documento);
+			} else {
+				ehValido = false;
+			}
+		} catch (InvalidStateException e) {
+			e.printStackTrace();
+			ehValido = false;
+		}
+		return ehValido;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -21,11 +42,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public Long getDocumento() {
+	public String getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(Long documento) {
+	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
 

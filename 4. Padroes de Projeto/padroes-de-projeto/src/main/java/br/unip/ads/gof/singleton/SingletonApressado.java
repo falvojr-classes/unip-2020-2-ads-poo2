@@ -9,6 +9,6 @@ public class SingletonApressado {
 	}
 	
 	public static SingletonApressado getIntancia() {
-		return intancia;
+		return SingletonApressado.intancia;
 	}
 }

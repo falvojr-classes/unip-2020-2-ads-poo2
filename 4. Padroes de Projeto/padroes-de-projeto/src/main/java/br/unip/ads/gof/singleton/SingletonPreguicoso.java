@@ -9,9 +9,9 @@ public class SingletonPreguicoso {
 	}
 	
 	public static SingletonPreguicoso getIntancia() {
-		if (intancia == null) {
-			intancia = new SingletonPreguicoso();
+		if (SingletonPreguicoso.intancia == null) {
+			SingletonPreguicoso.intancia = new SingletonPreguicoso();
 		}
-		return intancia;
+		return SingletonPreguicoso.intancia;
 	}
 }
