@@ -10,7 +10,7 @@ import br.unip.ads.gof.templatemethod.PacoteA;
 import br.unip.ads.gof.templatemethod.PacoteB;
 import br.unip.ads.gof.templatemethod.Viagem;
 
-public class Main {
+public class Program {
 
 	public static void main(String[] args) {
 		
