@@ -24,3 +24,7 @@
     + **Spring Data** `Grupo 3`
     + **Spring Web (REST)** `Grupo 4`
 + **API** `Grupo 5`
+
+#### Links Úteis
+
+[O que é API, REST e RESTful?](https://youtu.be/ghTrp1x_1As)
