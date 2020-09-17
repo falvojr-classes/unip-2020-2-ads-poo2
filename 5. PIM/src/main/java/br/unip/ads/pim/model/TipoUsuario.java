@@ -1,6 +1,7 @@
 package br.unip.ads.pim.model;
 
-public enum TipoCliente {
+public enum TipoUsuario {
 	PF, 
-	PJ;
+	PJ, 
+	ADM;
 }

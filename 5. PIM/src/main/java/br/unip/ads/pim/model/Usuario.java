@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,9 @@ public class Cliente {
 	private String email;
 	@Column(nullable = false)
 	private String senha;
-	@Column(nullable = false, length = 2)
+	@Column(nullable = false, length = 3)
 	@Enumerated(EnumType.STRING)
-	private TipoCliente tipo;
+	private TipoUsuario tipo;
 
 	// TODO Mapear relacionamentos (enderecos, dadosBancarios e interesses)
 
@@ -68,11 +68,11 @@ public class Cliente {
 		this.senha = senha;
 	}
 
-	public TipoCliente getTipo() {
+	public TipoUsuario getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoCliente tipo) {
+	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
 
