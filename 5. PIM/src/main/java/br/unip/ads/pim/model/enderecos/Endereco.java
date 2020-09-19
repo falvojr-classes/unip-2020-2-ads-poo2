@@ -1,4 +1,4 @@
-package br.unip.ads.pim.model;
+package br.unip.ads.pim.model.enderecos;
 
 public class Endereco {
 

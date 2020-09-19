@@ -1,19 +1,15 @@
-package br.unip.ads.pim.model;
+package br.unip.ads.pim.model.usuarios;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import br.unip.ads.pim.model.BaseEntity;
 
 @Entity
-public class Usuario {
+public class Usuario extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	@Column(nullable = false)
 	private String nome;
 	@Column(nullable = false, unique = true)
@@ -27,14 +23,6 @@ public class Usuario {
 	private TipoUsuario tipo;
 
 	// TODO Mapear relacionamentos (enderecos, dadosBancarios e interesses)
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
