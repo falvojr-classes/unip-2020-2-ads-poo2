@@ -17,6 +17,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.4.6'
+	implementation 'commons-validator:commons-validator:1.7'
 	
 	runtimeOnly 'org.postgresql:postgresql'
 	
