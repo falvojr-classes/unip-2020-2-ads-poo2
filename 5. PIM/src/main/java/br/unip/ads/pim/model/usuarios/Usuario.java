@@ -1,11 +1,17 @@
 package br.unip.ads.pim.model.usuarios;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import br.unip.ads.pim.model.BaseEntity;
+import br.unip.ads.pim.model.interesses.Interesse;
 
 @Entity
 public class Usuario extends BaseEntity {
@@ -21,8 +27,12 @@ public class Usuario extends BaseEntity {
 	@Column(nullable = false, length = 3)
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipo;
-
-	// TODO Mapear relacionamentos (enderecos, dadosBancarios e interesses)
+	@ManyToMany
+	@JoinTable(
+		name = "usuario_interesse", 
+		joinColumns = { @JoinColumn(name = "usuario_id") },
+		inverseJoinColumns = {@JoinColumn(name = "interesse_id") })
+	private List<Interesse> interesses;
 
 	public String getNome() {
 		return nome;
@@ -62,6 +72,14 @@ public class Usuario extends BaseEntity {
 
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
+	}
+
+	public List<Interesse> getInteresses() {
+		return interesses;
+	}
+
+	public void setInteresses(List<Interesse> interesses) {
+		this.interesses = interesses;
 	}
 
 }

@@ -17,6 +17,7 @@ import io.swagger.v3.oas.models.tags.Tag;
 public class OpenApiConfig {
 
 	public static final String TAG_LOGIN = "Login";
+	public static final String TAG_INTERESSE = "Interesse";
 	public static final String TAG_USUARIOS = "Usuarios";
 	
     private static final String BASIC_AUTH_SCHEME_NAME = "basicAuth";
@@ -35,6 +36,7 @@ public class OpenApiConfig {
 		
 		return new OpenAPI().components(new Components())
                 .addTagsItem(createTag(TAG_LOGIN, "Operações no domínio de Login."))
+                .addTagsItem(createTag(TAG_INTERESSE, "Operações no domínio de Interesse."))
                 .addTagsItem(createTag(TAG_USUARIOS, "Operações no domínio de Usuarios."))
                 .addSecurityItem(new SecurityRequirement().addList(BASIC_AUTH_SCHEME_NAME))
                 .components(new Components().addSecuritySchemes(BASIC_AUTH_SCHEME_NAME, basicAuthScheme))

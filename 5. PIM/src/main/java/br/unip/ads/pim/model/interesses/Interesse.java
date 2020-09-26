@@ -1,7 +1,14 @@
 package br.unip.ads.pim.model.interesses;
 
-public class Interesse {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import br.unip.ads.pim.model.BaseEntity;
+
+@Entity
+public class Interesse extends BaseEntity {
 	
+	@Column(nullable = false)
 	private String descricao;
 
 	public String getDescricao() {

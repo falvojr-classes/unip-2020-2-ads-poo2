@@ -13,12 +13,18 @@ repositories {
 }
 
 dependencies {
+	// Spring Data JPA: abstração de persistência para bancos de dados relacionais.
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Spring Web: provê abstrações para o uso do estilo aquitetural REST.
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Spring Security: possui abstrações de segurança, no caso usamos o Basic Authentication.
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Biblioteca aderente ao Spring para documentação de APIs REST usando o Swagger 3.
 	implementation 'org.springdoc:springdoc-openapi-ui:1.4.6'
+	// Bliblioteca externa (Apache) para a validação de email.
 	implementation 'commons-validator:commons-validator:1.7'
 	
+	// Dependência do Driver do PostgreSQL, usado pelo Spring Data.
 	runtimeOnly 'org.postgresql:postgresql'
 	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
