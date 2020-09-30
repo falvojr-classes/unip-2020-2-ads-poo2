@@ -23,6 +23,8 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.4.6'
 	// Bliblioteca externa (Apache) para a validação de email.
 	implementation 'commons-validator:commons-validator:1.7'
+	// Bliblioteca externa (Caelum Stella) para a validação de documentos brasileiros.
+	implementation 'br.com.caelum.stella:caelum-stella-core:2.1.4'
 	
 	// Dependência do Driver do PostgreSQL, usado pelo Spring Data.
 	runtimeOnly 'org.postgresql:postgresql'

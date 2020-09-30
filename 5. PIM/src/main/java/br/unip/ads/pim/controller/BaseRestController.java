@@ -20,16 +20,16 @@ public abstract class BaseRestController {
 	}
 	
 	@ExceptionHandler(NegocioException.class)
-	private ResponseEntity<ApiError> handlerNegocioException(NegocioException e) {
-		ApiError error = new ApiError();
+	private ResponseEntity<ErrorResponse> handlerNegocioException(NegocioException e) {
+		ErrorResponse error = new ErrorResponse();
 		error.setMensagem(e.getMessage());
 		return ResponseEntity.badRequest().body(error);
 	}
 
 	@ExceptionHandler(Throwable.class)
-	private ResponseEntity<ApiError> handlerErroInesperado(Throwable e) {
+	private ResponseEntity<ErrorResponse> handlerErroInesperado(Throwable e) {
 		// TODO Logar o erro no servidor, para análise do mesmo.
-		ApiError error = new ApiError();
+		ErrorResponse error = new ErrorResponse();
 		error.setMensagem("Ops, ocorreu um erro inesperado.");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
 	}

@@ -1,6 +1,6 @@
 package br.unip.ads.pim.controller;
 
-public class ApiError {
+public class ErrorResponse {
 	
 	private String mensagem;
 

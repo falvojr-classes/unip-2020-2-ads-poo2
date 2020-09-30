@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import br.com.caelum.stella.validation.CNPJValidator;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
+import br.unip.ads.pim.model.usuarios.TipoUsuario;
 import br.unip.ads.pim.model.usuarios.Usuario;
 import br.unip.ads.pim.repository.UsuarioRepository;
 import br.unip.ads.pim.service.UsuarioService;
@@ -23,19 +27,24 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 	}
 
 	@Override
+	public void inserir(Usuario entidade) {
+		validarUsuario(entidade);
+		super.inserir(entidade);
+	}
+	
+	@Override
+	public void alterar(Long id, Usuario entidade) {
+		validarUsuario(entidade);
+		super.alterar(id, entidade);
+	}
+
+	@Override
 	public Usuario logar(Usuario entidade) {
 		String email = entidade.getEmail();
 		String senha = entidade.getSenha();
 		
-		if (StringUtils.isBlank(email)) {
-			throw new NegocioException("O preenchimento do e-mail é obrigatório.");
-		}
-		if (StringUtils.isBlank(senha)) {
-			throw new NegocioException("O preenchimento da senha é obrigatório.");
-		}
-		if (!EmailValidator.getInstance().isValid(email)) {
-			throw new NegocioException("O e-mail é inválido.");
-		}
+		validarSenha(senha);
+		validarEmail(email);
 		
 		Usuario usuarioLogado = repository.findByEmailAndSenha(email, senha)
 				.orElseThrow(() -> new NegocioException("E-mail ou senha inválidos."));
@@ -44,6 +53,61 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 		usuarioLogado.setSenha(null);
 		
 		return usuarioLogado;
+	}
+	
+	/**
+	 * Regras de negócio para a inclusão/altreção de Usuário.
+	 * 
+	 * @param entidade objeto que será validado.
+	 */
+	private void validarUsuario(Usuario entidade) {
+		if (StringUtils.isBlank(entidade.getNome())) {
+			throw new NegocioException("O preenchimento do nome é obrigatório.");
+		}
+		
+		validarDocumento(entidade);
+		
+		validarEmail(entidade.getEmail());
+		
+		validarSenha(entidade.getSenha());
+	}
+
+	protected void validarDocumento(Usuario entidade) {
+		if (StringUtils.isBlank(entidade.getDocumento())) {
+			throw new NegocioException("O preenchimento do documento é obrigatório.");
+		}
+		String documentoSemMascara = entidade.getDocumento().replaceAll("[^0-9]", "");
+		if (TipoUsuario.PF.equals(entidade.getTipo())) {
+			try {
+				new CPFValidator().assertValid(documentoSemMascara);
+			} catch (InvalidStateException e) {
+				throw new NegocioException("CPF inválido.");
+			}
+		} else if (TipoUsuario.PJ.equals(entidade.getTipo())) {
+			try {
+				new CNPJValidator().assertValid(documentoSemMascara);
+			} catch (InvalidStateException e) {
+				throw new NegocioException("CNPJ inválido.");
+			}
+		} else {
+			throw new NegocioException("Tipo de usuário inválido.");
+		}
+		entidade.setDocumento(documentoSemMascara);
+	}
+
+	private void validarSenha(String senha) {
+		if (StringUtils.isBlank(senha)) {
+			throw new NegocioException("O preenchimento da senha é obrigatório.");
+		}
+	}
+
+	private void validarEmail(String email) {
+		if (StringUtils.isBlank(email)) {
+			throw new NegocioException("O preenchimento do e-mail é obrigatório.");
+		}
+		if (!EmailValidator.getInstance().isValid(email)) {
+			throw new NegocioException("O e-mail é inválido.");
+		}
 	}
 
 }
