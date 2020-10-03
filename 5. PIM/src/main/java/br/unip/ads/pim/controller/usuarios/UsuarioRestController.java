@@ -17,8 +17,8 @@ import br.unip.ads.pim.model.usuarios.Usuario;
 import br.unip.ads.pim.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = OpenApiConfig.TAG_USUARIOS)
 @CrossOrigin
+@Tag(name = OpenApiConfig.TAG_USUARIOS)
 @RestController
 public class UsuarioRestController extends BaseRestController {
 
@@ -36,15 +36,15 @@ public class UsuarioRestController extends BaseRestController {
 	}
 
 	@PostMapping("usuarios")
-	public ResponseEntity<Void> inserir(@RequestBody Usuario entidade) {
+	public ResponseEntity<Usuario> inserir(@RequestBody Usuario entidade) {
 		camadaNegocio.inserir(entidade);
-		return ResponseEntity.created(super.criarUri(entidade.getId())).build();
+		return ResponseEntity.created(super.criarUri(entidade.getId())).body(entidade);
 	}
 
 	@PutMapping("usuarios/{id}")
-	public ResponseEntity<Void> alterar(@PathVariable Long id, @RequestBody Usuario entidade) {
+	public ResponseEntity<Usuario> alterar(@PathVariable Long id, @RequestBody Usuario entidade) {
 		camadaNegocio.alterar(id, entidade);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(entidade);
 	}
 
 	@DeleteMapping("usuarios/{id}")

@@ -17,8 +17,8 @@ import br.unip.ads.pim.model.interesses.Interesse;
 import br.unip.ads.pim.service.InteresseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = OpenApiConfig.TAG_INTERESSE)
 @CrossOrigin
+@Tag(name = OpenApiConfig.TAG_INTERESSE)
 @RestController
 public class InteresseRestController extends BaseRestController {
 
@@ -36,15 +36,15 @@ public class InteresseRestController extends BaseRestController {
 	}
 
 	@PostMapping("interesses")
-	public ResponseEntity<Void> inserir(@RequestBody Interesse entidade) {
+	public ResponseEntity<Interesse> inserir(@RequestBody Interesse entidade) {
 		camadaNegocio.inserir(entidade);
-		return ResponseEntity.created(super.criarUri(entidade.getId())).build();
+		return ResponseEntity.created(super.criarUri(entidade.getId())).body(entidade);
 	}
 
 	@PutMapping("interesses/{id}")
-	public ResponseEntity<Void> alterar(@PathVariable Long id, @RequestBody Interesse entidade) {
+	public ResponseEntity<Interesse> alterar(@PathVariable Long id, @RequestBody Interesse entidade) {
 		camadaNegocio.alterar(id, entidade);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(entidade);
 	}
 
 	@DeleteMapping("interesses/{id}")

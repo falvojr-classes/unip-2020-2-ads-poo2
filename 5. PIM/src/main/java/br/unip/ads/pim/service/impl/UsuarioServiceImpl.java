@@ -34,8 +34,17 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 	
 	@Override
 	public void alterar(Long id, Usuario entidade) {
-		validarUsuario(entidade);
-		super.alterar(id, entidade);
+		// Recupera o usuário do Banco de Dados
+		final Usuario entidadePreparada = super.buscarUm(id);
+		// Atribui o ID da entidade para executar a regra no método 'alterar'
+		entidadePreparada.setId(entidade.getId());
+		// Atribui apenas os dados negocialmente alteráveis
+		entidadePreparada.setNome(entidade.getNome());
+		entidadePreparada.setDocumento(entidade.getDocumento());
+		entidadePreparada.setTipo(entidade.getTipo());
+		entidadePreparada.setInteresses(entidade.getInteresses());
+		validarUsuario(entidadePreparada);
+		super.alterar(id, entidadePreparada);
 	}
 
 	@Override

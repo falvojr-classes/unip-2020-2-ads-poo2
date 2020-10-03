@@ -13,8 +13,8 @@ import br.unip.ads.pim.model.usuarios.Usuario;
 import br.unip.ads.pim.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = OpenApiConfig.TAG_LOGIN)
 @CrossOrigin
+@Tag(name = OpenApiConfig.TAG_LOGIN)
 @RestController
 public class LoginRestController extends BaseRestController {
 
