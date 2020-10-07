@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,10 +26,17 @@ public abstract class BaseRestController {
 		error.setMensagem(e.getMessage());
 		return ResponseEntity.badRequest().body(error);
 	}
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	private ResponseEntity<ErrorResponse> handlerNegocioException(AccessDeniedException e) {
+		ErrorResponse error = new ErrorResponse();
+		error.setMensagem("Acesso negado.");
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+	}
 
 	@ExceptionHandler(Throwable.class)
 	private ResponseEntity<ErrorResponse> handlerErroInesperado(Throwable e) {
-		// TODO Logar o erro no servidor, para análise do mesmo.
+		e.printStackTrace();
 		ErrorResponse error = new ErrorResponse();
 		error.setMensagem("Ops, ocorreu um erro inesperado.");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);

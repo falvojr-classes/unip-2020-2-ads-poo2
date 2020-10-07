@@ -2,6 +2,7 @@ package br.unip.ads.pim.controller.usuarios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,9 @@ public class UsuarioRestController extends BaseRestController {
 	@Autowired
 	private UsuarioService camadaNegocio;
 	
+	@PreAuthorize("hasAuthority('ADM')")
 	@GetMapping("usuarios")
-	private ResponseEntity<Iterable<Usuario>> buscarTodos() {
+	public ResponseEntity<Iterable<Usuario>> buscarTodos() {
 		return ResponseEntity.ok(camadaNegocio.buscarTodos());
 	}
 	
@@ -47,6 +49,7 @@ public class UsuarioRestController extends BaseRestController {
 		return ResponseEntity.ok(entidade);
 	}
 
+	@PreAuthorize("hasAuthority('ADM')")
 	@DeleteMapping("usuarios/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		camadaNegocio.excluir(id);

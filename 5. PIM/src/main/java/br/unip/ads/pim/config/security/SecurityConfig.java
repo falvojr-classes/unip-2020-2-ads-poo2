@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 /**
- * https://www.baeldung.com/spring-security-authentication-provider
+ * @see https://www.baeldung.com/spring-security-authentication-provider
  */
 @Configuration
 @EnableWebSecurity

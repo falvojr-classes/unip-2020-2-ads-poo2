@@ -2,6 +2,7 @@ package br.unip.ads.pim.controller.interesses;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,27 +27,31 @@ public class InteresseRestController extends BaseRestController {
 	private InteresseService camadaNegocio;
 	
 	@GetMapping("interesses")
-	private ResponseEntity<Iterable<Interesse>> buscarTodos() {
+	public ResponseEntity<Iterable<Interesse>> buscarTodos() {
 		return ResponseEntity.ok(camadaNegocio.buscarTodos());
 	}
-	
+
+	@PreAuthorize("hasAuthority('ADM')")
 	@GetMapping("interesses/{id}")
 	public ResponseEntity<Interesse> buscarUm(@PathVariable Long id) {
 		return ResponseEntity.ok(camadaNegocio.buscarUm(id));
 	}
 
+	@PreAuthorize("hasAuthority('ADM')")
 	@PostMapping("interesses")
 	public ResponseEntity<Interesse> inserir(@RequestBody Interesse entidade) {
 		camadaNegocio.inserir(entidade);
 		return ResponseEntity.created(super.criarUri(entidade.getId())).body(entidade);
 	}
 
+	@PreAuthorize("hasAuthority('ADM')")
 	@PutMapping("interesses/{id}")
 	public ResponseEntity<Interesse> alterar(@PathVariable Long id, @RequestBody Interesse entidade) {
 		camadaNegocio.alterar(id, entidade);
 		return ResponseEntity.ok(entidade);
 	}
 
+	@PreAuthorize("hasAuthority('ADM')")
 	@DeleteMapping("interesses/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		camadaNegocio.excluir(id);
