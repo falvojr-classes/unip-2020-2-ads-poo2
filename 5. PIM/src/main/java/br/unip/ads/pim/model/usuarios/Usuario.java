@@ -33,6 +33,8 @@ public class Usuario extends BaseEntity {
 		joinColumns = { @JoinColumn(name = "usuario_id") },
 		inverseJoinColumns = {@JoinColumn(name = "interesse_id") })
 	private List<Interesse> interesses;
+	@Column
+	private boolean bloqueado;
 
 	public String getNome() {
 		return nome;
@@ -80,6 +82,14 @@ public class Usuario extends BaseEntity {
 
 	public void setInteresses(List<Interesse> interesses) {
 		this.interesses = interesses;
+	}
+
+	public boolean isBloqueado() {
+		return bloqueado;
+	}
+
+	public void setBloqueado(boolean bloqueado) {
+		this.bloqueado = bloqueado;
 	}
 
 }

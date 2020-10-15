@@ -29,7 +29,7 @@ public class ApiAuthenticationProvider implements AuthenticationProvider {
 
 		Optional<Usuario> usuario = repository.findByEmailAndSenha(email, senha);
 		
-		if (usuario.isPresent()) {
+		if (usuario.isPresent() && !usuario.get().isBloqueado()) {
 			List<GrantedAuthority> perfil = AuthorityUtils.commaSeparatedStringToAuthorityList(usuario.get().getTipo().name());
 			return new UsernamePasswordAuthenticationToken(email, senha, perfil);
 		} else {

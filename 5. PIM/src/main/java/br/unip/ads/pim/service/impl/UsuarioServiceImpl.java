@@ -58,10 +58,21 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 		Usuario usuarioLogado = repository.findByEmailAndSenha(email, senha)
 				.orElseThrow(() -> new NegocioException("E-mail ou senha inválidos."));
 		
+		if (usuarioLogado.isBloqueado()) {
+			throw new NegocioException("Usuário bloqueado, entre em contato com o administrador.");
+		}
+		
 		// Evita que a senha seja enviada para o cliente (Web ou Android).
 		usuarioLogado.setSenha(null);
 		
 		return usuarioLogado;
+	}
+	
+	@Override
+	public void excluir(Long id) {
+		Usuario usuario = super.buscarUm(id);
+		usuario.setBloqueado(!usuario.isBloqueado());
+		super.alterar(id, usuario);
 	}
 	
 	/**
