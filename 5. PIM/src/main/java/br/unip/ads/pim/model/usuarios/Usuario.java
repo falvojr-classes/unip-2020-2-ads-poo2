@@ -35,6 +35,8 @@ public class Usuario extends BaseEntity {
 	private List<Interesse> interesses;
 	@Column
 	private boolean bloqueado;
+	@Column
+	private String telefone;
 
 	public String getNome() {
 		return nome;
@@ -90,6 +92,14 @@ public class Usuario extends BaseEntity {
 
 	public void setBloqueado(boolean bloqueado) {
 		this.bloqueado = bloqueado;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

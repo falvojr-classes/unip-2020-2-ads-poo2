@@ -27,6 +27,16 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 	}
 
 	@Override
+	public Iterable<Usuario> buscarTodos() {
+		return repository.buscarNaoAdmOrdenandoPorNome();
+		
+		// Alternativa: Ordenar a lista no Java (usando a API de Stream do Java 8):
+		//return  () -> StreamSupport.stream(super.buscarTodos().spliterator(), false)
+		//		.sorted((user1, user2) -> user1.getNome().compareTo(user2.getNome()))
+		//		.iterator();
+	}
+	
+	@Override
 	public void inserir(Usuario entidade) {
 		validarUsuario(entidade);
 		super.inserir(entidade);
@@ -35,16 +45,17 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 	@Override
 	public void alterar(Long id, Usuario entidade) {
 		// Recupera o usuário do Banco de Dados
-		final Usuario entidadePreparada = super.buscarUm(id);
+		final Usuario entidadeParaAtualizacao = super.buscarUm(id);
 		// Atribui o ID da entidade para executar a regra no método 'alterar'
-		entidadePreparada.setId(entidade.getId());
+		entidadeParaAtualizacao.setId(entidade.getId());
 		// Atribui apenas os dados negocialmente alteráveis
-		entidadePreparada.setNome(entidade.getNome());
-		entidadePreparada.setDocumento(entidade.getDocumento());
-		entidadePreparada.setTipo(entidade.getTipo());
-		entidadePreparada.setInteresses(entidade.getInteresses());
-		validarUsuario(entidadePreparada);
-		super.alterar(id, entidadePreparada);
+		entidadeParaAtualizacao.setNome(entidade.getNome());
+		entidadeParaAtualizacao.setDocumento(entidade.getDocumento());
+		entidadeParaAtualizacao.setTipo(entidade.getTipo());
+		entidadeParaAtualizacao.setTelefone(entidade.getTelefone());
+		entidadeParaAtualizacao.setInteresses(entidade.getInteresses());
+		validarUsuario(entidadeParaAtualizacao);
+		super.alterar(id, entidadeParaAtualizacao);
 	}
 
 	@Override
