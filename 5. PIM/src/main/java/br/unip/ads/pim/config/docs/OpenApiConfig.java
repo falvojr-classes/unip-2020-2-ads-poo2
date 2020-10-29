@@ -19,6 +19,7 @@ public class OpenApiConfig {
 	public static final String TAG_LOGIN = "Login";
 	public static final String TAG_INTERESSE = "Interesse";
 	public static final String TAG_USUARIOS = "Usuarios";
+	public static final String TAG_RELATORIOS = "Relatorios";
 	
     private static final String BASIC_AUTH_SCHEME_NAME = "basicAuth";
 
@@ -38,6 +39,7 @@ public class OpenApiConfig {
                 .addTagsItem(createTag(TAG_LOGIN, "Operações no domínio de Login."))
                 .addTagsItem(createTag(TAG_INTERESSE, "Operações no domínio de Interesse."))
                 .addTagsItem(createTag(TAG_USUARIOS, "Operações no domínio de Usuarios."))
+                .addTagsItem(createTag(TAG_RELATORIOS, "Operações no domínio de Relatorios."))
                 .addSecurityItem(new SecurityRequirement().addList(BASIC_AUTH_SCHEME_NAME))
                 .components(new Components().addSecuritySchemes(BASIC_AUTH_SCHEME_NAME, basicAuthScheme))
                 .info(info);

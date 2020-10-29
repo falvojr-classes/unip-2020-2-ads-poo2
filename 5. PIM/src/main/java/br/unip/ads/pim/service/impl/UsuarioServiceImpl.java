@@ -28,7 +28,7 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 
 	@Override
 	public Iterable<Usuario> buscarTodos() {
-		return repository.buscarNaoAdmOrdenandoPorNome();
+		return repository.buscarPorNaoAdmOrdenandoPorNome();
 		
 		// Alternativa: Ordenar a lista no Java (usando a API de Stream do Java 8):
 		//return  () -> StreamSupport.stream(super.buscarTodos().spliterator(), false)
