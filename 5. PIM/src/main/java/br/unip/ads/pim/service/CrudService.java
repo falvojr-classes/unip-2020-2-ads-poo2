@@ -16,5 +16,5 @@ public interface CrudService<T> {
 	
 	void alterar(Long id, T entidade);
 	
-	void excluir(Long id);
+	void bloquearDesbloquear(Long id);
 }

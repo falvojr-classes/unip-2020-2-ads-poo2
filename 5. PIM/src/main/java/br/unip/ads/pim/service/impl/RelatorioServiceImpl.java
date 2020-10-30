@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.unip.ads.pim.model.usuarios.TipoUsuario;
 import br.unip.ads.pim.model.usuarios.Usuario;
 import br.unip.ads.pim.repository.UsuarioRepository;
 import br.unip.ads.pim.service.RelatorioService;
@@ -23,7 +24,7 @@ public class RelatorioServiceImpl implements RelatorioService {
 
 	@Override
 	public String exportarTodosUsuarios() {
-		// Recupera todos os usuários do Banco de Dados
+		// Recupera todos os usuários (PF e PJ) do Banco de Dados
 		Iterable<Usuario> usuarios = usuarioService.buscarTodos();
 		return this.criarStringCsvUsuarios(usuarios);
 	}
@@ -32,8 +33,10 @@ public class RelatorioServiceImpl implements RelatorioService {
 	public String exportarUsuariosPorInteresses(List<Long> interesses) {
 		Iterable<Usuario> usuarios;
 		if (interesses == null || interesses.isEmpty()) {
-			usuarios = usuarioRepository.findByInteressesIsEmpty();
+			// Recupera todos os usuários (PF e PJ) do Banco de Dados sem interesses.
+			usuarios = usuarioRepository.findByInteressesIsEmptyAndTipoNot(TipoUsuario.ADM);
 		} else {
+			// Recupera todos os usuários (PF e PJ) do Banco de Dados com os interesses em questão.
 			usuarios = usuarioRepository.buscarPorInteressesRelacionados(interesses);
 		}
 		return this.criarStringCsvUsuarios(usuarios);

@@ -37,7 +37,7 @@ public abstract class BaseCrudService<T extends BaseEntity> implements CrudServi
 	}
 
 	@Override
-	public void excluir(Long id) {
+	public void bloquearDesbloquear(Long id) {
 		T entidadeBd = buscarUm(id);
 		getRepository().delete(entidadeBd);
 	}

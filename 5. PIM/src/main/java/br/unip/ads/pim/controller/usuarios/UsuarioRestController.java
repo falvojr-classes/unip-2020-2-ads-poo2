@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,9 +50,9 @@ public class UsuarioRestController extends BaseRestController {
 	}
 
 	@PreAuthorize("hasAuthority('ADM')")
-	@DeleteMapping("usuarios/{id}")
+	@PatchMapping("usuarios/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
-		camadaNegocio.excluir(id);
+		camadaNegocio.bloquearDesbloquear(id);
 		return ResponseEntity.ok().build();
 	}
 

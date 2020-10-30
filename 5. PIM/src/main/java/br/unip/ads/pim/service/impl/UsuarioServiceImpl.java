@@ -80,7 +80,7 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 	}
 	
 	@Override
-	public void excluir(Long id) {
+	public void bloquearDesbloquear(Long id) {
 		Usuario usuario = super.buscarUm(id);
 		usuario.setBloqueado(!usuario.isBloqueado());
 		super.alterar(id, usuario);

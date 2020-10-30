@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import br.unip.ads.pim.model.usuarios.TipoUsuario;
 import br.unip.ads.pim.model.usuarios.Usuario;
 
 @Repository
@@ -22,8 +23,25 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	@Query("FROM Usuario u WHERE u.tipo != 'ADM' ORDER BY u.nome ASC")
 	Iterable<Usuario> buscarPorNaoAdmOrdenandoPorNome();
 	
-	@Query("SELECT u FROM Usuario u JOIN u.interesses i WHERE i.id IN (:interesses) ORDER BY u.nome ASC")
+	/**
+	 * Query personalizada para busca de usuários (PF e PJ) com os interesses passados como parâmetro.
+	 * 
+	 * @param interesses lista de interesses para busca dos usuários.
+	 * 
+	 * @return lista de usuários (PF e PJ) que possuem ao menos um dos interesses recebidos por parâmetro.
+	 */
+	@Query("SELECT DISTINCT u FROM Usuario u "
+			+ "JOIN FETCH u.interesses i "
+			+ "WHERE u.tipo != 'ADM' AND i.id IN (:interesses) "
+			+ "ORDER BY u.nome ASC")
 	Iterable<Usuario> buscarPorInteressesRelacionados(@Param("interesses") List<Long> interesses);
 	
-	Iterable<Usuario> findByInteressesIsEmpty();
+	/**
+	 * Query nomeada (Spring Data) para busca de usuários (PF e PJ) sem interesses cadastrados.
+	 * 
+	 * @param tipo passar o valor TipoUsuario.ADM para um resultado adequado.
+	 * 
+	 * @return lista de usuários (PF e PJ) sem interesses cadastrados.
+	 */
+	Iterable<Usuario> findByInteressesIsEmptyAndTipoNot(TipoUsuario tipo);
 }

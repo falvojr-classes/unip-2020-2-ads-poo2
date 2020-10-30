@@ -16,7 +16,7 @@ import br.unip.ads.pim.model.usuarios.Usuario;
 import br.unip.ads.pim.repository.UsuarioRepository;
 
 @Component
-public class ApiAuthenticationProvider implements AuthenticationProvider {
+public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private UsuarioRepository repository;

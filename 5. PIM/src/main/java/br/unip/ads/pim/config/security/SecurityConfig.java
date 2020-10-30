@@ -17,7 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
-    private ApiAuthenticationProvider authProvider;
+    private CustomAuthenticationProvider authProvider;
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

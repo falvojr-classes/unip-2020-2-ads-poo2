@@ -54,7 +54,7 @@ public class InteresseRestController extends BaseRestController {
 	@PreAuthorize("hasAuthority('ADM')")
 	@DeleteMapping("interesses/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
-		camadaNegocio.excluir(id);
+		camadaNegocio.bloquearDesbloquear(id);
 		return ResponseEntity.ok().build();
 	}
 
