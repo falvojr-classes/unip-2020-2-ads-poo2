@@ -13,6 +13,10 @@ repositories {
 }
 
 dependencies {
+    def openapi_version = '1.4.6'
+    def commons_validator_version = '1.7'
+    def caelum_stella_version = '2.1.4'
+    
 	// Spring Data JPA: abstração de persistência para bancos de dados relacionais.
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// Spring Web: provê abstrações para o uso do estilo aquitetural REST.
@@ -20,11 +24,11 @@ dependencies {
 	// Spring Security: possui abstrações de segurança, no caso usamos o Basic Authentication.
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// Biblioteca aderente ao Spring para documentação de APIs REST usando o Swagger 3.
-	implementation 'org.springdoc:springdoc-openapi-ui:1.4.6'
+	implementation "org.springdoc:springdoc-openapi-ui:$openapi_version"
 	// Bliblioteca externa (Apache) para a validação de email.
-	implementation 'commons-validator:commons-validator:1.7'
+	implementation "commons-validator:commons-validator:$commons_validator_version"
 	// Bliblioteca externa (Caelum Stella) para a validação de documentos brasileiros.
-	implementation 'br.com.caelum.stella:caelum-stella-core:2.1.4'
+	implementation "br.com.caelum.stella:caelum-stella-core:$caelum_stella_version"
 	
 	// Dependência do Driver do PostgreSQL, usado pelo Spring Data.
 	runtimeOnly 'org.postgresql:postgresql'
